@@ -11,13 +11,13 @@ Our library is available on [Maven Central][mavenRepo].
 implementation("com.barion:barionsdk:0.1.16")
 ```
 
-Our library using Jetpack Compose and Java 8+ features so your application need to support it as well:
+Our library uses Jetpack Compose and Java 8+ features so your application needs to support it as well:
 ```groovy
 coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 implementation("androidx.compose.ui:ui-graphics")
 implementation("androidx.compose.ui:ui")
 ```
-:warning: _If you don't want to customize the payment UI you don't need add compose._
+:warning: _If you don't want to customize the payment UI you don't need to add compose._
 
 ### Usage
 
@@ -30,8 +30,8 @@ val barionGatewayPlugin = BarionGatewayPlugin(this, null)
 
 To present the BarionGatewayPlugin, it needs a client secret at least. You can get a client secret from the Barion API, read more [here](https://docs.barion.com).
 
-Call the `present` function of the `BarionGatewayPlugin` instance to present the inline gateway in your app, which will asynchronously return with the result of the payment attempt. Pass the `clientSecret` as a parameter to the `present` method at least.
-The SDK can decide which environment used to get the client secret.
+Call the `present` function of the `BarionGatewayPlugin` instance to present the inline gateway in your app. The function will asynchronously return the payment attempt result. Pass the `clientSecret` as a parameter to the `present` method at least.
+The SDK can decide which environment is used to get the client secret.
 
 You MUST validate the result on your backend as well.
 
@@ -62,7 +62,7 @@ The `paymentMethodOrder` possible values are:
 ["googlePay", "bankCard", "barionWallet", "newCard"]
 ```
 
-:warning: _Currently the Google Pay is not available, we are still working on it._
+:warning: _Currently Google Pay is not available, we are still working on it._
 
 :warning: _The Google Pay won't be in the payment method list if your device doesn't support it._
 
@@ -132,7 +132,7 @@ Please let us know if you find any issues.
 
 ## Localization
 
-The SDK support these languages:
+The SDK supports these languages:
 English, Hungarian, Czech, German, Slovak
 
 
