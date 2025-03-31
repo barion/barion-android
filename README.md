@@ -8,7 +8,7 @@ Barion Android provides you with the building blocks to create a checkout experi
 Our library is available on [Maven Central][mavenRepo].
 
 ```groovy
-implementation("com.barion:barionsdk:0.1.15")
+implementation("com.barion:barionsdk:0.1.16")
 ```
 
 Our library using Jetpack Compose and Java 8+ features so your application need to support it as well:
