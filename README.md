@@ -8,7 +8,7 @@ Barion Android provides you with the building blocks to create a checkout experi
 Our library is available on [Maven Central][mavenRepo].
 
 ```groovy
-implementation("com.barion:barionsdk:0.1.16")
+implementation("com.barion:barionsdk:0.3.0")
 ```
 
 Our library uses Jetpack Compose and Java 8+ features so your application needs to support it as well:
@@ -82,6 +82,29 @@ val fundingSourceColors = FundingSourceColors(
     subtitle = Color.Black,
     background = Color.White
 )
+val dialogPositiveButton = DialogButton(
+    backGroundColor = Color.Blue,
+    titleColor = Color.White,
+    borderColor = null
+)
+val dialogNegativeButton = DialogButton(
+    backGroundColor = Color.Red,
+    titleColor = Color.White,
+    borderColor = null
+)
+val dialogNeutralButton = DialogButton(
+    backGroundColor = Color.Grey,
+    titleColor = Color.White,
+    borderColor = Color.Black
+)
+val dialogColors = DialogColors(
+    titleColor = Color.Black,
+    messageColor = Color.Black,
+    backgroundColor = Color.White,
+    positiveButton = dialogPositiveButton,
+    negativeButton = dialogNegativeButton,
+    neutralButton = dialogNeutralButton
+)
 val colors = Colors(
     background = Color.White,
     primary = Color.Red,
@@ -90,7 +113,8 @@ val colors = Colors(
     text = Color.Black,
     secondaryText = Color.Black,
     fundingSourceColors = fundingSourceColors,
-    inputColors = inputColors
+    inputColors = inputColors,
+    dialogColors = dialogColors
 )
 val shadow = Shadow(
     shadowColor = Color.Black,
@@ -105,6 +129,7 @@ val primaryButton = PrimaryButton(
     font = FontFamily.SansSerif
 )
 val renderOptions = RenderOptions(
+    appearance = BarionAppearance.AUTOMATIC,
     font = FontFamily.SansSerif,
     colors = colors,
     primaryButton = primaryButton,
