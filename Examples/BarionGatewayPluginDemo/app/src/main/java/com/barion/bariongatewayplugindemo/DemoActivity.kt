@@ -11,6 +11,8 @@ import barion.sdk.shared.BarionGatewayPlugin
 import barion.sdk.shared.SDKClientEventListener
 import barion.sdk.shared.models.BarionGatewayPluginOptions
 import barion.sdk.shared.models.Colors
+import barion.sdk.shared.models.DialogButton
+import barion.sdk.shared.models.DialogColors
 import barion.sdk.shared.models.FundingSourceColors
 import barion.sdk.shared.models.InputColors
 import barion.sdk.shared.models.PaymentResult
@@ -86,6 +88,29 @@ class DemoActivity: AppCompatActivity(), SDKClientEventListener {
             subtitle = Color.Black,
             background = Color.White
         )
+        val dialogPositiveButton = DialogButton(
+            backgroundColor = Color.Blue,
+            titleColor = Color.White,
+            borderColor = null
+        )
+        val dialogNegativeButton = DialogButton(
+            backgroundColor = Color.Red,
+            titleColor = Color.White,
+            borderColor = null
+        )
+        val dialogNeutralButton = DialogButton(
+            backgroundColor = Color.Gray,
+            titleColor = Color.White,
+            borderColor = Color.Black
+        )
+        val dialogColors = DialogColors(
+            titleColor = Color.Black,
+            messageColor = Color.Black,
+            backgroundColor = Color.Black,
+            positiveButton = dialogPositiveButton,
+            negativeButton = dialogNegativeButton,
+            neutralButton = dialogNeutralButton
+        )
         val colors = Colors(
             background = Color.White,
             primary = Color.Red,
@@ -94,7 +119,8 @@ class DemoActivity: AppCompatActivity(), SDKClientEventListener {
             text = Color.Black,
             secondaryText = Color.Black,
             fundingSourceColors = fundingSourceColors,
-            inputColors = inputColors
+            inputColors = inputColors,
+            dialogColors = dialogColors
         )
         val shadow = Shadow(
             shadowColor = Color.Black,
