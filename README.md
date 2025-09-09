@@ -66,6 +66,13 @@ The `paymentMethodOrder` possible values are:
 
 :warning: _The Google Pay won't be in the payment method list if your device doesn't support it._
 
+The possible values of BarionAppearance are:
+```kotlin
+BarionAppearance.AUTOMATIC // OS theme
+BarionAppearance.DARK // forced dark mode
+BarionAppearance.LIGHT // forced light mode
+```
+
 Pass it to the `BarionGatewayPlugin` object `present` function.
 
 ```kotlin
@@ -83,17 +90,17 @@ val fundingSourceColors = FundingSourceColors(
     background = Color.White
 )
 val dialogPositiveButton = DialogButton(
-    backGroundColor = Color.Blue,
+    backgroundColor = Color.Blue,
     titleColor = Color.White,
     borderColor = null
 )
 val dialogNegativeButton = DialogButton(
-    backGroundColor = Color.Red,
+    backgroundColor = Color.Red,
     titleColor = Color.White,
     borderColor = null
 )
 val dialogNeutralButton = DialogButton(
-    backGroundColor = Color.Grey,
+    backgroundColor = Color.Grey,
     titleColor = Color.White,
     borderColor = Color.Black
 )
