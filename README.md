@@ -165,7 +165,7 @@ Please let us know if you find any issues.
 ## Localization
 
 The SDK supports these languages:
-English, Hungarian, Czech, German, Slovak
+English, Hungarian, Czech, German, Slovak, Polish, Romanian
 
 
 ## See also
