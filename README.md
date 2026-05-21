@@ -30,7 +30,7 @@ to add compose._
 You need to initialize the `BarionGatewayPlugin` in the `onCreate()` method like this:
 
 ```kotlin
-val barionGatewayPlugin = BarionGatewayPlugin(this, null)
+val barionGatewayPlugin = BarionGatewayPlugin(this)
 ```
 
 You can subscribe to events from the SDK. You can use it to log the progress of the payment flow.
@@ -58,7 +58,7 @@ The SDK can decide which environment is used to get the client secret.
 You MUST validate the result on your backend as well.
 
 ```kotlin
-barionGatewayPlugin.present(clientSecret, null) { paymentResult ->
+barionGatewayPlugin.present(clientSecret) { paymentResult ->
     // handle payment result and validate it on your backend
 }
 ```
@@ -175,7 +175,7 @@ barionGatewayPlugin.isGooglePayAvailable(clientSecret) { isAvailable ->
 If isAvailable == true, you can call the `GooglePayButton` function to show the Google Pay button. You MUST validate the result on your backend as well.
 
 ```kotlin
-barionGatewayPlugin.GooglePayButton(null) { paymentResult ->
+barionGatewayPlugin.GooglePayButton { paymentResult ->
     // handle payment result and validate it on your backend
 }
 ```
