@@ -152,7 +152,7 @@ See `BarionAppearance` entries [here](#barion-appearance).
 :warning: _The font family of the fonts is used throughout the SDK. The SDK uses this font at
 multiple weights (e.g., regular, medium, semibold) if they exist._
 
-:warning: _The Google Pay won't be in the payment method list if your device doesn't support it._
+:warning: _The Google Pay will appear in the payment method list only if your device supports it and if it is enabled and properly configured for the merchant account._
 
 ### Google Pay component
 
@@ -170,6 +170,7 @@ barionGatewayPlugin.isGooglePayAvailable(clientSecret) { isAvailable ->
     // handle the boolean result
 }
 ```
+:warning: _The Google Pay buttin will be available only if your device supports it and if it is enabled and properly configured for the merchant account._
 
 If isAvailable == true, you can call the `GooglePayButton` function to show the Google Pay button. You MUST validate the result on your backend as well.
 
