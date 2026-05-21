@@ -84,17 +84,17 @@ val fundingSourceColors = FundingSourceColors(
     background = Color.White
 )
 val dialogPositiveButton = DialogButton(
-    backGroundColor = Color.Blue,
+    backgroundColor = Color.Blue,
     titleColor = Color.White,
     borderColor = null
 )
 val dialogNegativeButton = DialogButton(
-    backGroundColor = Color.Red,
+    backgroundColor = Color.Red,
     titleColor = Color.White,
     borderColor = null
 )
 val dialogNeutralButton = DialogButton(
-    backGroundColor = Color.Grey,
+    backgroundColor = Color.Grey,
     titleColor = Color.White,
     borderColor = Color.Black
 )
@@ -273,7 +273,7 @@ Please let us know if you find any issues.
 ## Localization
 
 The SDK supports these languages:
-English, Hungarian, Czech, German, Slovak
+English, Hungarian, Czech, German, Slovak, Polish, Romanian
 
 ## See also
 
