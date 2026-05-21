@@ -67,7 +67,7 @@ See more about the `paymentResult` object [here](#payment-result).
 
 #### Customization
 
-You can customize the UI of the SDK to fit into your application perfectly. Create your `barionGatewayPluginOptions`. Than pass it to the `BarionGatewayPlugin` object's `present` function.
+You can customize the UI of the SDK to fit into your application perfectly. Create your `barionGatewayPluginOptions`. Then pass it to the `BarionGatewayPlugin` object's `present` function.
 
 ```kotlin
 val inputColors = InputColors(
@@ -192,7 +192,7 @@ the `GooglePayButton` function will return the following error: GOOGLE_PAY_NOT_A
 
 #### Customization
 
-You can customize the button to fit into your application perfectly. Create your `googlePayRenderOptions`. Than pass it to the `BarionGatewayPlugin` object's `GooglePayButton` function.
+You can customize the button to fit into your application perfectly. Create your `googlePayButtonRenderOptions`. Then pass it to the `BarionGatewayPlugin` object's `GooglePayButton` function.
 
 ```kotlin
 val googlePayButtonRenderOptions = GooglePayButtonRenderOptions(
@@ -201,7 +201,7 @@ val googlePayButtonRenderOptions = GooglePayButtonRenderOptions(
     cornerRadiusDp = 24
 )
 barionGatewayPlugin.GooglePayButton(googlePayButtonRenderOptions) { paymentResult ->
-    // handle the boolean result
+   // handle payment result and validate it on your backend
 }
 ```
 
@@ -256,7 +256,7 @@ If you want to make Google Pay available to your users, you need to follow the s
    2. Complete your business data on the profile
 3. Share your Merchant ID with Barion
 4. Get Production access to your app
-   1. On the Google Pay and Wallet console, go to Google Pay api, than App Integration and you will see your apps there. The apps which are available in Play Console even if they are not published yet or only available for closed or open testing. If your app is not visible, you have to invite the e-mail address with is connected to the app in the Play Console. For that go to Users → Invite a user
+   1. On the Google Pay and Wallet console, go to Google Pay api, then App Integration and you will see your apps there. The apps which are available in Play Console even if they are not published yet or only available for closed or open testing. If your app is not visible, you have to invite the e-mail address with is connected to the app in the Play Console. For that go to Users → Invite a user
    2. Complete all steps
       1. Select integration type: Gateway
       2. Upload screenshots of your app (using the Barion SDK in test environment because in this case Google Pay will be available in test mode)
