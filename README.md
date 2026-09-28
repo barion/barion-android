@@ -8,7 +8,7 @@ shoppers, allowing them to pay using the payment method of their choice.
 Our library is available on [Maven Central][mavenRepo].
 
 ```groovy
-implementation("com.barion:barionsdk:1.0.0")
+implementation("com.barion:barionsdk:1.2.0")
 ```
 
 Our library uses Jetpack Compose and Java 8+ features so your application needs to support it as
@@ -65,7 +65,35 @@ barionGatewayPlugin.present(clientSecret) { paymentResult ->
 
 See more about the `paymentResult` object [here](#payment-result).
 
-#### Customization
+#### Saved cards
+
+To display or save a card for a user, pass the user’s recurrenceId in the `merchantOwnedPaymentData` when presenting the payment flow. 
+Create your `merchantOwnedPaymentData` in the `barionGatewayPluginOptions`. 
+Then pass it to the `BarionGatewayPlugin` object's `present` function. 
+If a card is already associated with the token, it appears in the payment method list. 
+If no card is associated with it yet, the user can save a new card under that token during the payment flow.
+
+```kotlin
+val merchantOwnedPaymentData = MerchantOwnedPaymentData(
+    methods = listOf(
+        Method(
+            methodType = "cof",
+            token = recurrenceId,
+        )
+    )
+)
+
+val barionGatewayPluginOptions = BarionGatewayPluginOptions(
+    merchantOwnedPaymentData = merchantOwnedPaymentData,
+    locale = "en_US"
+)
+
+barionGatewayPlugin.present(clientSecret, barionGatewayPluginOptions) { paymentResult ->
+    // handle payment result and validate it on your backend
+}
+```
+
+#### UI customization
 
 You can customize the UI of the SDK to fit into your application perfectly. Create your `barionGatewayPluginOptions`. Then pass it to the `BarionGatewayPlugin` object's `present` function.
 
