@@ -67,7 +67,7 @@ See more about the `paymentResult` object [here](#payment-result).
 
 #### Saved cards
 
-To display or save a card for a user, pass the user’s merchant-managed token in the `merchantOwnedPaymentData` when presenting the payment flow. 
+To display or save a card for a user, pass the user’s recurrenceId in the `merchantOwnedPaymentData` when presenting the payment flow. 
 Create your `merchantOwnedPaymentData` in the `barionGatewayPluginOptions`. 
 Then pass it to the `BarionGatewayPlugin` object's `present` function. 
 If a card is already associated with the token, it appears in the payment method list. 
@@ -78,7 +78,7 @@ val merchantOwnedPaymentData = MerchantOwnedPaymentData(
     methods = listOf(
         Method(
             methodType = "cof",
-            token = savedCardToken,
+            token = recurrenceId,
         )
     )
 )
