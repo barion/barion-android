@@ -45,6 +45,76 @@ val barionGatewayPlugin = BarionGatewayPlugin(this, barionGatewayPluginConfigura
 
 :warning: _Currently there are no events._
 
+#### Returning from the banking app during 3D Secure authentication
+
+Some 3D Secure authentication flows require the user to approve the payment in their banking app. You can provide a callback URL through `BarionGatewayPluginConfiguration.threeDSRequestorAppURL` so that the banking app can redirect the user back to your app.
+
+Once configured, the SDK handles incoming callback links automatically and brings the ongoing 3D Secure authentication flow back to the foreground. No additional callback handling is required in your app.
+
+##### 1. Configure the callback URL
+
+Pass your HTTPS callback URL when creating the plugin:
+
+```kotlin
+val barionGatewayPlugin = BarionGatewayPlugin(
+    activity = this,
+    configuration = BarionGatewayPluginConfiguration(
+        threeDSRequestorAppURL = "https://your.host/your/path"
+    )
+)
+```
+
+Replace `your.host` with your actual domain and `/your/path` with the callback path you want to use.
+
+The property is optional and defaults to `null`. If this URL is not configured, the banking app cannot automatically redirect the user back to your app. The user must manually return to your app to continue the payment flow.
+
+##### 2. Add the callback intent filter
+
+Add the following declaration **inside the `<application>` element** of your app module's `AndroidManifest.xml`:
+
+```xml
+<activity-alias
+    android:name="barion.sdk.ThreeDsCallback"
+    android:exported="true">
+    <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data
+            android:scheme="https"
+            android:host="your.host"
+            android:path="/your/path" />
+    </intent-filter>
+</activity-alias>
+```
+
+Keep `android:name="barion.sdk.ThreeDsCallback"` exactly as shown. Replace the host and path with the values from the callback URL.
+
+> **Android Studio manifest warning**
+>
+> Android Studio may report that `android:targetActivity` is missing from this alias declaration. The SDK supplies this attribute in its own manifest, and the manifest merger combines the declarations using the alias name.
+
+##### 3. Set up Android App Links for your domain
+
+For automatic HTTPS link routing, use a domain you control and publish a valid Digital Asset Links file at:
+
+```text
+https://your.host/.well-known/assetlinks.json
+```
+
+The file must associate the domain with your app using:
+
+- Your app's final `applicationId`.
+- The SHA-256 fingerprint of the certificate signing the installed app.
+- The `delegate_permission/common.handle_all_urls` relation.
+
+For apps distributed through Play App Signing, use the **app signing certificate** fingerprint from Google Play Console. Include the appropriate certificate fingerprint for each build you intend to test.
+
+The file must be publicly accessible over HTTPS without authentication or redirects. Successful verification requires the website association to match the installed app.
+
+Follow the [Android website association guide](https://developer.android.com/training/app-links/configure-assetlinks) to configure `assetlinks.json`.
+
+
 ### Present the inline gateway
 
 To present the `BarionGatewayPlugin`, it needs a client secret at least. You can get a client secret
