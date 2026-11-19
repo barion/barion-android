@@ -45,11 +45,28 @@ val barionGatewayPlugin = BarionGatewayPlugin(this, barionGatewayPluginConfigura
 
 :warning: _Currently there are no events._
 
-#### Returning from the banking app during 3D Secure authentication
+#### Returning from the banking app after out-of-band (OOB) 3D Secure authentication
 
-Some 3D Secure authentication flows require the user to approve the payment in their banking app. You can provide a callback URL through `BarionGatewayPluginConfiguration.threeDSRequestorAppURL` so that the banking app can redirect the user back to your app.
 
-Once configured, the SDK handles incoming callback links automatically and brings the ongoing 3D Secure authentication flow back to the foreground. No additional callback handling is required in your app.
+During a 3D Secure challenge, the cardholder may need to complete
+out-of-band (OOB) authentication in their issuer's banking app
+(the OOB Authentication App).
+
+Configure the **3DS Requestor App URL** through
+`BarionGatewayPluginConfiguration.threeDSRequestorAppURL` to allow
+a supported OOB Authentication App to return the cardholder to
+your app (the 3DS Requestor App) after authentication.
+
+The Barion SDK passes this URL to the 3DS SDK when starting the
+challenge. Once the App Link is configured, the Barion SDK handles
+incoming callback links and brings the ongoing 3DS challenge back
+to the foreground. No additional callback handling is required
+in your app.
+
+> [!WARNING]
+> If the 3DS Requestor App URL is not configured, the cardholder may need to manually return to your app after completing OOB authentication.
+>
+> An invalid or unreachable URL may cause the issuer to reject the authentication, preventing the payment from completing.
 
 ##### 1. Configure the callback URL
 
@@ -110,7 +127,7 @@ The file must associate the domain with your app using:
 
 For apps distributed through Play App Signing, use the **app signing certificate** fingerprint from Google Play Console. Include the appropriate certificate fingerprint for each build you intend to test.
 
-The file must be publicly accessible over HTTPS without authentication or redirects. Successful verification requires the website association to match the installed app.
+The file must be publicly accessible over HTTPS without authentication or redirects. The `android:autoVerify="true"` attribute requests domain verification. Successful verification requires the website association to match the installed app.
 
 Follow the [Android website association guide](https://developer.android.com/training/app-links/configure-assetlinks) to configure `assetlinks.json`.
 
